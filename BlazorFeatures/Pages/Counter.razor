@@ -1,0 +1,22 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p style="font-family: @fontFamily">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    // best practice is to separate HTML and c# code into different files
+    // useful from unit testing point of view as well as general maintenance
+
+
+    private int currentCount = 0;
+    private string fontFamily = "Monotype Corsiva";
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

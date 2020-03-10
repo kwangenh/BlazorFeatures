@@ -1,0 +1,31 @@
+﻿@page "/bonus"
+
+<h3>Bonus Slider</h3>
+
+<div class="budget">
+    @foreach(var item in bonusList)
+    {
+        <!-- Want to correct this styling so there is enough space for the slider to increase digits-->
+        <span style="width:100px">@item.Department:</span>
+        <span style="width 100px">@item.Amount.ToString("c0")</span>
+        <input type ="range" max = "@(item.Amount + totalRemaining)" step="1000"
+               @bind="@item.Amount" @bind:event="oninput" style="width: @(100 * (item.Amount + totalRemaining) / totalBonusMoney)%"/>
+        <br />
+    }
+
+    <span>Remaining Bonus Money:</span>
+    <span>@totalRemaining.ToString("c0")</span>
+</div>
+
+@code {
+    decimal totalBonusMoney = 1000000;
+
+    decimal totalRemaining => totalBonusMoney - bonusList.Sum(bonusItem => bonusItem.Amount);
+
+    List<BonusItem> bonusList = new List<BonusItem>
+    {
+        new BonusItem {Department = "Sales"},
+        new BonusItem {Department = "Developers"},
+        new BonusItem {Department = "Management"}
+    };
+}

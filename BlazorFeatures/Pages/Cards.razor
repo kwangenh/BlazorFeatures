@@ -1,0 +1,17 @@
+﻿@page "/cards"
+@using Contracts;
+@using Entities.Models;
+
+@inject IRepositoryWrapper _repoContext;
+
+<h3>Cards</h3>
+
+<button @onclick="GetCards"> Get Cards </button>
+
+@code {
+    public void GetCards()
+    {
+        var cards =_repoContext.Card.GetAllCards();
+        Console.WriteLine("database retrieved cards.");
+    }
+}
