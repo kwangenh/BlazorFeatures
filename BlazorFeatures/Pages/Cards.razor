@@ -8,10 +8,50 @@
 
 <button @onclick="GetCards"> Get Cards </button>
 
+@if (cards == null)
+{
+    <!-- Show this if the current user has no data... yet... -->
+    <p><em>Loading cards...</em></p>
+}
+
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                Card Name
+            </tr>
+            <tr>
+                Arcana
+            </tr>
+            <tr>
+                Suit
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var card in cards)
+            {
+                <tr>
+                    @card.CardName
+                </tr>
+                <tr>
+                    @card.Arcana
+                </tr>
+                <tr>
+                    @card.Suit
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
 @code {
+
+    private IEnumerable<Card> cards;
     public void GetCards()
     {
-        var cards =_repoContext.Card.GetAllCards();
+        cards = _repoContext.Card.GetAllCards();
         Console.WriteLine("database retrieved cards.");
     }
 }
