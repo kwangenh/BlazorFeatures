@@ -1,12 +1,15 @@
 ﻿@page "/cards"
 @using Contracts;
 @using Entities.Models;
+@using Repository;
 
 @inject IRepositoryWrapper _repoContext;
 
 <h3>Cards</h3>
 
 <button @onclick="GetCards"> Get Cards </button>
+<br />
+<button @onclick ="CreateCards">Create Cards</button>
 
 @if (cards == null)
 {
@@ -19,26 +22,18 @@ else
     <table class="table">
         <thead>
             <tr>
-                Card Name
-            </tr>
-            <tr>
-                Arcana
-            </tr>
-            <tr>
-                Suit
-            </tr>
+                <td>Card Name</td>
+                <td>Arcana</td>
+                <td>Suit</td>
+            </tr>       
         </thead>
         <tbody>
             @foreach(var card in cards)
             {
                 <tr>
-                    @card.CardName
-                </tr>
-                <tr>
-                    @card.Arcana
-                </tr>
-                <tr>
-                    @card.Suit
+                    <td>@card.CardName</td>
+                    <td>@card.Arcana</td>
+                    <td>@card.Suit</td>
                 </tr>
             }
         </tbody>
@@ -53,5 +48,11 @@ else
     {
         cards = _repoContext.Card.GetAllCards();
         Console.WriteLine("database retrieved cards.");
+    }
+
+    public void CreateCards()
+    {
+        TestDataBuilder dataBuilder = new TestDataBuilder(_repoContext);
+        dataBuilder.BuildCardsAndReadingTypes();
     }
 }
