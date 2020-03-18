@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Contracts
 {
@@ -9,5 +10,6 @@ namespace Contracts
     {
         IEnumerable<Card> GetAllCards();
         Card GetCardById(Guid id);
+        Task<List<Card>> GetCardsTask();
     }
 }

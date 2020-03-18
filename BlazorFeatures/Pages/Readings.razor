@@ -1,5 +1,25 @@
-﻿<h3>Readings</h3>
+﻿@using Entities.DataTransferObjects;
+@page "/readings"
+@using Contracts;
+@using Entities.Models;
+@using Repository;
+
+@inject IRepositoryWrapper _repoContext;
+
+<h3>Readings</h3>
+
+<form>
+    <input />
+</form>
+
 
 @code {
 
+    private IEnumerable<ReadingType_Read_Dto> readingTypes;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+       // readingTypes = _repoContext.ReadingType.GetAllReadingTypes();
+    }
 }

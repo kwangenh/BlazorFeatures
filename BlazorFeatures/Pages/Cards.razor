@@ -55,4 +55,15 @@ else
         TestDataBuilder dataBuilder = new TestDataBuilder(_repoContext);
         dataBuilder.BuildCardsAndReadingTypes();
     }
+
+  //  protected override async Task OnInitializedAsync()
+    //{
+      //  cards = await _repoContext.Card.GetCardsTask();
+   // }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        cards = _repoContext.Card.GetAllCards();
+    }
 }

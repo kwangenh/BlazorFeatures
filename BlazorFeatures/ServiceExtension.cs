@@ -59,6 +59,7 @@ namespace BlazorFeatures
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+            // may need to add new reference for IBusinessLogicWrapper ?
         }
     }
 }
